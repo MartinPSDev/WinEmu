@@ -26,8 +26,8 @@ We welcome contributions of all kinds. If you have ideas, improvements, or want 
 * **WebAssembly integration:** Compile the C++ code to WebAssembly for execution in the browser.
 * **Frontend development:** Create an intuitive user interface to interact with the emulator.
 
-### License
+### Author
 
-This project is licensed under [Specify the license here, e.g., MIT].
+*  ([@Martin_dev_PS](https://x.com/Martin_dev_PS))
 
 **Join us and help make WINEMU a reality!**
