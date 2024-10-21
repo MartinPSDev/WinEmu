@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WinEmu</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="desktop">
+        <a href="#" class="desktop-icon">
+            <img src="images/recycle_bin_21415.png " alt="Papelera de reciclaje" class="icon"> <!-- Cambia la ruta según donde guardes la imagen -->
+        </a>
+    </div>
+
+    <div class="taskbar">
+        <img src="images/icon-windows-10-taskbar.png" alt="Logo de Windows" class="windows-logo"> <!-- Cambia la ruta según donde guardes la imagen -->
+        <button onclick="createWindow('Window 1')">Window 1</button>
+        <button onclick="createWindow('Window 2')">Window 2</button>
+    </div>
+
+    <script src="main.js"></script>
+    <script src="wasm_interface.js"></script>
+</body>
+</html>

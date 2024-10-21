@@ -3,36 +3,36 @@
 #include "cpu.h"
 #include "memory.h"
 
-class CPU {
-public:
-    CPU(Memory* memory) : memory(memory) {
-        // Initialize CPU registers
-        for (int i = 0; i < 16; ++i) {
-            registers[i] = 0;
-        }
+CPU::CPU(Memory* memory) : memory(memory) {
+    for (int i = 0; i < 16; ++i) {
+        registers[i] = 0;
+    }
+    program_counter = 0;
+}
 
-        // Initialize the program counter
-        program_counter = 0;
+void CPU::execute_instruction() {
+    uint8_t instruction = memory->read(program_counter);
+    program_counter++;
+
+    switch (instruction) {
+        case 0x01: // ADD
+            registers[1] += registers[0];
+            break;
+        case 0x02: // NEW INSTRUCTION
+            break;
+        default:
+            std::cerr << "Instrucción no reconocida: " << std::hex << (int)instruction << std::endl;
+            break;
     }
 
-    void execute_instruction() {
-        // Read the current instruction
-        uint8_t instruction = memory->read(program_counter);
-        program_counter++;
+    handle_input(); // Handle input
+    render_output(); // Render output
+}
 
-        // Decodificar y ejecutar la instrucción
-        switch (instruction) {
-            case 0x01: // Instruction
-                registers[1] += registers[0];
-                break;
-            default:
-                std::cerr << "Instrucción no reconocida: " << std::hex << (int)instruction << std::endl;
-                break;
-        }
-    }
+void CPU::handle_input() {
+    // Logic for handling keyboard input
+}
 
-private:
-    Memory* memory;
-    uint64_t registers[16]; // General registers
-    uint64_t program_counter;
-};
+void CPU::render_output() {
+    // Logic for rendering the output on the screen
+}

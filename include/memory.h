@@ -1,18 +1,19 @@
-// memory.h
 #ifndef MEMORY_H
 #define MEMORY_H
 
 #include <cstdint>
 #include <iostream>
+#include <vector> //  vector for dynamic memory management
 
 class Memory {
 public:
-    Memory() = default;  // Default constructor
-    uint8_t read(uint32_t address);      // read method declaration, function body missing
-    void write(int address, int data);    // write method declaration, function body missing
+    Memory(size_t size = 256); // Constructor with dynamic size
+    uint8_t read(uint32_t address);
+    void write(int address, int data);
+    void allocate(size_t size); // Method for allocating memory
 
 private:
-    uint8_t data[256];
-};  
+    std::vector<uint8_t> data; // Use vector for storage
+};
 
 #endif
