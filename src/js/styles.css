@@ -8,15 +8,16 @@ body {
 
 /* Task Area Style */
 .taskbar {
-    background-color: #333; /* Taskbar color */
-    height: 40px;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    align-items: center;
-    padding: 0 10px;
+    background-color: #333; /* Color de la barra de tareas */
+    height: 50px; /* Altura de la barra de tareas */
+    display: flex; /* Asegúrate de que sea un contenedor flexible */
+    align-items: center; /* Centra verticalmente los elementos */
+    padding: 0 10px; /* Espaciado interno */
+    position: fixed; /* Fija la barra en la parte inferior */
+    bottom: 0; /* Posición en la parte inferior */
+    left: 0; /* Alineación a la izquierda */
+    right: 0; /* Alineación a la derecha */
+    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
 }
 
 /* Windows logo style */
@@ -26,16 +27,25 @@ body {
     margin-right: 10px; 
 }
 
-/* Taskbar Buttons Style*/
+/* Estilo para el botón de búsqueda */
 .taskbar button {
-    background-color: #444; /* Color de los botones */
-    border: none;
+    background-color: #0078d7; /* Color del botón */
     color: white;
-    padding: 10px;
-    margin: 0 5px;
-    cursor: pointer;
+    border: none;
     border-radius: 5px;
-    transition: background-color 0.3s;
+    cursor: pointer;
+    padding: 5px 10px; /* Espaciado interno */
+    display: none; /* Ocultar inicialmente */
+}
+
+
+/* Estilo para el input de búsqueda */
+.taskbar input[type="text"] {
+    width: 10%; /* Ajusta el ancho al 10% de la barra de tareas */
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px; /* Espacio entre el input y el botón */
 }
 
 .taskbar button:hover {
@@ -77,9 +87,6 @@ body {
     align-self: flex-end; /* Align right */
 }
 
-.close-button:hover {
-    background-color: darkred; 
-}
 
 /* Desktop icon style*/
 .desktop-icon {
@@ -97,4 +104,42 @@ body {
 .icon {
     width: 100%; /* Adjusts the size of the image to the container */
     height: auto;
+}
+/* Estilo para la ventana de PowerShell */
+.powershell-window {
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 600px;
+    height: 400px;
+    background-color: #1e1e1e; /* Color de fondo de la ventana */
+    color: white; /* Color del texto */
+    border: 1px solid #0078d7; /* Borde de la ventana */
+    padding: 10px; /* Espaciado interno */
+    display: none; /* Ocultar inicialmente */
+    z-index: 1001; /* Asegúrate de que esté por encima de otros elementos */
+}
+
+/* Estilo para el encabezado de la ventana */
+.powershell-window h2 {
+    margin: 0;
+    font-size: 14px; /* Tamaño más pequeño para el encabezado */
+    background-color: #0078d7; /* Color de fondo del encabezado */
+    color: white; /* Color del texto */
+    padding: 5px;
+    border-radius: 5px 5px 0 0;
+    display: flex; /* Usar flexbox para alinear el botón de cerrar */
+    justify-content: space-between; /* Espacio entre el título y el botón */
+}
+
+/* Estilo para el botón de cerrar */
+.close-button {
+    background-color: red; /* Color del botón de cerrar */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    padding: 2px 5px; /* Espaciado interno */
+    margin-left: 10px; /* Espacio entre el título y el botón */
 }
