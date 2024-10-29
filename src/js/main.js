@@ -19,7 +19,7 @@ function playSound() {
     audio.play(); // Call playSound() on specific events, such as opening a window
 }
 
-// Asegúrate de que el código se ejecute después de que el DOM esté cargado
+
 document.addEventListener('DOMContentLoaded', () => {
     // Crear la barra de tareas
     const taskbar = document.createElement('div');
@@ -34,13 +34,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Crear el botón de búsqueda
     const searchButton = document.createElement('button');
-    searchButton.innerHTML = '🔍';
+    searchButton.innerHTML = '<img src="path/to/white-magnifying-glass.png" alt="Buscar" class="search-icon">'; // Asegúrate de que esta ruta sea correcta
     taskbar.appendChild(searchButton);
 
     // Crear la consola de PowerShell
     const powershellWindow = document.createElement('div');
     powershellWindow.className = 'powershell-window';
-    powershellWindow.style.display = 'none'; // Ocultar inicialmente
+    powershellWindow.style.display = 'none'; 
     document.body.appendChild(powershellWindow);
 
     // Función para mostrar la consola
@@ -49,24 +49,52 @@ document.addEventListener('DOMContentLoaded', () => {
         powershellWindow.innerHTML = `
             <h2>
                 PowerShell
-                <button class="close-button" onclick="closePowerShell()">X</button>
+                <button class="close-button" id="closeButton">X</button>
             </h2>
-            <textarea></textarea>
+            <textarea class="powershell-prompt" placeholder="PS C:\\User>"></textarea>
         `;
+        // Enfocar el textarea para que el usuario pueda escribir inmediatamente
+        const textarea = powershellWindow.querySelector('.powershell-prompt');
+        textarea.focus();
+
+        // Añadir el evento de clic al botón de cerrar
+        const closeButton = document.getElementById('closeButton');
+        closeButton.addEventListener('click', closePowerShell);
     }
 
     // Función para cerrar la consola de PowerShell
     function closePowerShell() {
-        powershellWindow.style.display = 'none'; // Ocultar la ventana
+        powershellWindow.style.display = 'none'; 
     }
+
+    // Hacer que la ventana sea arrastrable
+    let isDragging = false;
+    let offsetX, offsetY;
+
+    powershellWindow.addEventListener('mousedown', (e) => {
+        isDragging = true;
+        offsetX = e.clientX - powershellWindow.getBoundingClientRect().left;
+        offsetY = e.clientY - powershellWindow.getBoundingClientRect().top;
+    });
+
+    document.addEventListener('mousemove', (e) => {
+        if (isDragging) {
+            powershellWindow.style.left = `${e.clientX - offsetX}px`;
+            powershellWindow.style.top = `${e.clientY - offsetY}px`;
+        }
+    });
+
+    document.addEventListener('mouseup', () => {
+        isDragging = false;
+    });
 
     // Autocompletar y abrir PowerShell
     searchInput.addEventListener('input', () => {
         const query = searchInput.value.toLowerCase();
         if (['powershell', 'po', 'pow', 'powe'].some(term => query.startsWith(term))) {
-            searchButton.style.display = 'inline'; // Mostrar botón
+            searchButton.style.display = 'inline'; 
         } else {
-            searchButton.style.display = 'none'; // Ocultar botón
+            searchButton.style.display = 'none'; 
         }
     });
 
